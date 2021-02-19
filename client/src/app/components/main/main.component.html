@@ -1,0 +1,37 @@
+<mat-grid-list cols="3" rowHeight="90vh">
+    <mat-grid-tile colspan="1">
+        <div class="flex">
+            <button routerLink="/homepageafterlogin" mat-flat-button [disabled]="!this._data.isloggedin"
+                color="primary">{{this._data.buttonstatus}}</button>
+            <form [formGroup]="myForm" (ngSubmit)="handlesubmit()">
+                <mat-form-field appearance="outline">
+                    <mat-label>email</mat-label>
+                    <input matInput placeholder="johnny789@gmail.com" formControlName="email">
+                    <mat-icon matSuffix>alternate_email</mat-icon>
+                    <mat-error *ngIf="myForm.controls.email.errors?.required">Email must be provided</mat-error>
+                </mat-form-field>
+                <mat-form-field appearance="outline">
+                    <mat-label>password</mat-label>
+                    <input matInput type="password" placeholder="****" formControlName="password">
+                    <mat-icon matSuffix>vpn_key</mat-icon>
+                    <mat-error *ngIf="myForm.controls.password.errors?.required">Password must be provided</mat-error>
+                </mat-form-field>
+                <button mat-flat-button type="submit" color="primary" [disabled]="myForm.invalid">LOGIN</button>
+                <p>Don't have an account yet? <a routerLink="/homepagebeforelogin/registerpage">Register</a></p>
+            </form>
+        </div>
+    </mat-grid-tile>
+    <mat-grid-tile colspan="1">
+        <div class="flex">
+            <img width="100px" src="https://i.pinimg.com/564x/78/a9/90/78a9900f6dc08eb240058c3de4f00844.jpg" />
+            <p>blah blah this is my store</p>
+        </div>
+    </mat-grid-tile>
+    <mat-grid-tile colspan="1">
+        <div class="flex">
+            <p>{{this._data.sentencestatus}}</p>
+            <p>There is {{productsamount}} products Available in our store</p>
+            <p>There is {{ordersamount}} orders submitted in out store</p>
+        </div>
+    </mat-grid-tile>
+</mat-grid-list>

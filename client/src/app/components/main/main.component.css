@@ -1,0 +1,24 @@
+.flex{
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    align-items: center;
+  }
+  form {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+  }
+  
+  mat-form-field,
+  button {
+    margin-bottom: 7px;
+  }
+  
+  p {
+    margin-top: 5px;
+  }
+  mat-grid-tile {
+      background: lightblue;
+  }

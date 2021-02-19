@@ -33,12 +33,13 @@ foreign key(category_id) references categories(category_id)
 CREATE TABLE carts(
 cart_id int auto_increment,
 date_cart_created date default now(),
+status varchar(20),
 user_id int,
 primary key(cart_id),
 foreign key(user_id) references users(user_id)
 );
 
-CREATE TABLE productInCart(
+CREATE TABLE productsincarts(
 productincart_id int auto_increment,
 amount int,
 total_price int,
@@ -58,8 +59,10 @@ date_of_order date,
 date_order_created date default now(),
 four_digits_creditcard int,
 cart_id int,
+user_id int,
 primary key(order_id),
-foreign key(cart_id) references carts(cart_id)
+foreign key(cart_id) references carts(cart_id),
+foreign key(user_id) references users(user_id)
 );
 
 INSERT INTO categories(category_name)
@@ -140,3 +143,6 @@ VALUES(209320670,'atalya','roichman','atalyaro@gmail.com',"$2b$10$u.SPMt5H5B9zvt
 UPDATE users
 SET access=1
 WHERE user_id=209320670;
+
+-- INSERT INTO carts(date_cart_created,user_id,status)
+-- VALUES(NOW(),234863909,"open")
