@@ -1,0 +1,47 @@
+.mat-nav-list {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+ }
+
+ .item{
+   margin-left:5px;
+ }
+  .example-container {
+    display: flex;
+    flex-direction: column;
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+  }
+  .mat-drawer-content{
+ width: 100vw;
+height:78vh;
+padding-bottom: 3px;
+  }
+  /* .example-is-mobile .example-toolbar {
+    position: fixed;
+    z-index: 2;
+  } */
+  
+  h3.example-app-name {
+    margin-left: 6px;
+  }
+
+  .mat-drawer{
+    padding: 12vw;
+  }
+
+  .trash{
+    background-color: #424242;
+  }
+  .example-spacer {
+    flex: 2 1;
+  }
+
+  .search{
+  background: none;
+}

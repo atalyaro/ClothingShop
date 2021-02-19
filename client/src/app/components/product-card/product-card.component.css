@@ -1,0 +1,19 @@
+.example-card {
+    width: 17vw;
+    margin: 3px;
+    display: grid;
+    position: relative;
+  }
+  .mat-card-header{
+      height:11.5vh;
+  }
+  .mat-card-actions{
+    display:flex;
+    justify-content: center;
+    align-items: center;
+    height: 5vh;
+  }
+  .example-header-image {
+    background-image: url('https://material.angular.io/assets/img/examples/shiba1.jpg');
+    background-size: cover;
+  }

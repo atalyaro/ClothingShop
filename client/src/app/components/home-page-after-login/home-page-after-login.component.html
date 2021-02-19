@@ -1,0 +1,70 @@
+<div class="example-container">
+    <mat-toolbar color="primary" class="example-toolbar">
+        <mat-toolbar-row>
+            <button mat-icon-button (click)="logout()">
+                <span class="material-icons">
+                    logout
+                </span>
+            </button>
+            <h3 class="example-app-name">Log Out</h3>
+            <span class="example-spacer"></span>
+            <!-- <form class="example-form"> -->
+            <mat-form-field class="search" appearance="standard" hideRequiredMarker="false">
+                <input matInput #search placeholder="Search product">
+            </mat-form-field>
+            <button mat-icon-button (click)='searchproducts(search.value);search.value=""'>
+                <span class="material-icons">
+                    search
+                </span>
+            </button>
+        </mat-toolbar-row>
+
+        <mat-toolbar-row>
+            <button mat-icon-button (click)="drawer.toggle()">
+                <span *ngIf="!this._data.loggedUser.access" class="material-icons">
+                    shopping_cart
+                </span>
+                <span *ngIf="this._data.loggedUser.access" class="material-icons">
+                    drive_file_rename_outline
+                </span>
+            </button>
+            <h3 class="example-app-name" *ngIf="!this._data.loggedUser.access">Cart</h3>
+            <h3 class="example-app-name" *ngIf="this._data.loggedUser.access">Workspace</h3>
+            <span class="example-spacer"></span>
+            <mat-nav-list #categories>
+                <button class="item" mat-flat-button *ngFor=" let category of this._data.categories"
+                    routerLink="/homepageafterlogin" [value]="category.category_name"
+                    (click)="choosecategory($event)">{{category.category_name}}
+                </button>
+            </mat-nav-list>
+        </mat-toolbar-row>
+    </mat-toolbar>
+
+    <mat-drawer-container>
+        <mat-drawer-content class="example-sidenav-container">
+            <router-outlet></router-outlet>
+        </mat-drawer-content>
+
+        <mat-drawer #drawer mode="over">
+            <div *ngIf="!this._data.loggedUser.access">
+                <div *ngFor="let productcart of this._data.productsofcart">
+                    <p>{{productcart.product_name}}X{{productcart.amount}}</p>
+                    <p>{{productcart.total_price}}$</p>
+                    <button mat-icon-button
+                        (click)="deleteoneproductcart(productcart.productincart_id,this._data.cart_id,productcart.total_price)"
+                        class="trash">
+                        <span class="material-icons">
+                            delete
+                        </span>
+                    </button>
+                </div>
+                <p>total price: {{this._data.cartprice}}$</p>
+                <button mat-flat-button (click)="deleteallproducts(this._data.cart_id)">Clear Cart</button>
+                <button mat-flat-button>Checkout</button>
+            </div>
+            <!-- <div *ngIf="!this._data.loggedUser.access">
+                <p>blah</p>
+            </div> -->
+        </mat-drawer>
+    </mat-drawer-container>
+</div>
