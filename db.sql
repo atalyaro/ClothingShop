@@ -4,8 +4,8 @@ USE clothingshop;
 
 CREATE TABLE users(
 user_id int,
-private_name varchar(30),
-family_name varchar(30),
+first_name varchar(30),
+last_name varchar(30),
 email varchar(60),
 password varchar(255),
 access boolean default false,
@@ -128,21 +128,45 @@ VALUES('Blue floral top',30,'https://img.ltwebstatic.com/images3_pi/2020/12/28/1
 ('Black belt',19,'https://img.ltwebstatic.com/images3_pi/2020/12/29/16092154875b8135cd13f2f15684047ecabc57d600_thumbnail_900x.webp',8) ,
 ('Beige knitted hat',12,'https://img.ltwebstatic.com/images3_pi/2020/12/18/160825824785dcc4a85dc34d47430f1f98d2e859d2_thumbnail_900x.webp',8) ,
 ('Blue sunglasses',26,'https://img.ltwebstatic.com/images3_pi/2020/12/30/16093069999ff4e80c7c12bd00600151a2b7901501_thumbnail_900x.webp',8) ,
-('Red Bag',34,'https://img.ltwebstatic.com/images3_pi/2020/12/30/1609314462a032bb864ba397f731c946e870e67a8e_thumbnail_900x.webp',8) ,
+('Red bag',34,'https://img.ltwebstatic.com/images3_pi/2020/12/30/1609314462a032bb864ba397f731c946e870e67a8e_thumbnail_900x.webp',8) ,
 ('Green wallet',28,'https://img.ltwebstatic.com/images2_pi/2019/04/01/15541048273165509469_thumbnail_900x1199.webp',8) ,
 ('Pink sungalsses',24,'https://img.ltwebstatic.com/images3_pi/2020/08/31/1598841489fe5d57acc6ceaabbe8ffa9ddf63d11e1_thumbnail_900x.webp',8);
 
 
-INSERT INTO users(user_id,private_name, family_name, email, password, city, street)
+INSERT INTO users(user_id,first_name, last_name, email, password, city, street)
 VALUES(209320670,'atalya','roichman','atalyaro@gmail.com',"$2b$10$u.SPMt5H5B9zvt/2UM2A2OZ2G5B4wpMtJwqV34yVJq84If9waafie","","") ,
 (234863909,'omer','naar','omernaar@walla.com',"$2b$10$u.SPMt5H5B9zvt/2UM2A2OZ2G5B4wpMtJwqV34yVJq84If9waafie", "Tel Aviv", "Florentin 2") ,
 (123982123,'mai','nitzan','mai123@gmail.com',"$2b$10$Zxl2gBEITac3oYUoqEaPZOsMD/mAk7YhM1SJzfKYdj79td.t0.OQq", "Jerusalem", "Ein Kerem 34") ,
-(783722330,'amir','tchetchik','amir_t1@walla.com',"$2b$10$IrHQBdrQQlZIilkXXHToZOor8AWRhH5iqDvn92Br/r6VYDzTBYP9O", "Rishon LeZion", "Rothschild 168"),
-(910129382,'yahav','nayer','yahoov@gmail.com',"$2b$10$VCZhVRz8c1v2mwLexuTgp.L9zNGu9vEK5cJBRxF/KjjYHILMm5gja", "Beersheba", "Herzl 45");
+(783722330,'amir','tchetchik','amir_t1@walla.com',"$2b$10$IrHQBdrQQlZIilkXXHToZOor8AWRhH5iqDvn92Br/r6VYDzTBYP9O", "Rishon LeZion", "Rothschild 168");
 
 UPDATE users
 SET access=1
 WHERE user_id=209320670;
 
--- INSERT INTO carts(date_cart_created,user_id,status)
--- VALUES(NOW(),234863909,"open")
+INSERT INTO carts(date_cart_created,user_id,status)
+VALUES(DATE '2021-03-05',234863909,"close"),
+(DATE '2021-03-06',123982123,"close"),
+(DATE '2021-03-07',783722330,"close"),
+(DATE '2021-03-07',234863909,"close"),
+(DATE '2021-03-08',123982123,"close"),
+(DATE '2021-03-12',783722330,"close"),
+(DATE '2021-03-13',234863909,"open");
+
+INSERT INTO productsincarts(amount,total_price,product_id,cart_id)
+VALUES(1,21,15,1),(1,31,26,1),(2,76,38,1),(1,24,27,1),
+(1,20,2,2),(2,48,27,2),
+(2,30,3,3),(1,24,27,3),(2,62,26,3),
+(1,18,4,4),
+(1,32,39,5),(2,62,30,5),(1,19,11,5),
+(2,104,33,6),(3,48,14,6),
+(2,40,2,7);
+
+INSERT INTO orders(city,street,order_price,date_of_order,date_order_created,four_digits_creditcard,cart_id,user_id)
+VAlUES("Tel Aviv","Florentin 2",152,DATE '2021-05-13',DATE '2021-03-06',2340,1,234863909),
+("Jerusalem","Ein Kerem 34",68,DATE '2021-05-13',DATE '2021-03-10',8371,2,123982123),
+("Rishon LeZion","Rothschild 168",116,DATE '2021-05-13',DATE '2021-03-11',6295,3,783722330),
+("Tel Aviv","Florentin 2",18,DATE '2021-04-28',DATE '2021-03-11',2340,4,234863909),
+("Jerusalem","Ein Kerem 34",113,DATE '2021-04-28',DATE '2021-03-12',8371,5,123982123),
+("Rishon LeZion","Rothschild 168",152,DATE '2021-04-28',DATE '2021-03-13',6295,6,783722330);
+
+All users passwords is: 1234
