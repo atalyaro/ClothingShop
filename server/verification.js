@@ -3,7 +3,7 @@ const { Query } = require("./dbcon")
 
 const everyUser = (req, res, next) => {
     jwt.verify(req.headers.token, "thisismysecret", (err, payload) => {
-        if (err) return res.status(403).json({ err: true, msg: err.message })
+        if (err) return res.json({ err: true, msg: err.message })
         req.user = payload
         next()
     })
