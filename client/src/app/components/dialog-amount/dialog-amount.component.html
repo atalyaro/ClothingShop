@@ -1,0 +1,19 @@
+<div class="dialog" mat-dialog-content #dialogAmount>
+    <p>
+        How many {{this.data.productitem.product_name}} do you like?
+    </p>
+    <button mat-button [disabled]="this.data.amount==1" (click)="this.data.amount=this.data.amount-1">
+        <span class="material-icons">
+            remove
+        </span>
+    </button>
+    <input class="input" #amount [value]="this.data.amount" type="Number" min="1" max="100">
+    <button mat-button (click)="this.data.amount=this.data.amount+1">
+        <span class="material-icons">
+            add
+        </span>
+    </button>
+    <button class="button" mat-button mat-dialog-close [disabled]="amount.value>100||amount.value<1"
+        (click)="addproduct(amount.value,this.data.productitem.product_id);this.dialogRef.close()">ADD TO
+        CART</button>
+</div>

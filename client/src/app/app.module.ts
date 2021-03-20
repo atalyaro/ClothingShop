@@ -25,10 +25,15 @@ import { MatListModule } from '@angular/material/list';
 import { MatSnackBarModule } from '@angular/material/snack-bar';
 import { MatCardModule } from '@angular/material/card';
 import { MatDialogModule } from '@angular/material/dialog';
+import { MatDatepickerModule } from '@angular/material/datepicker';
+import { MatNativeDateModule } from '@angular/material/core';
 
 import { HomePageAfterLoginComponent } from './components/home-page-after-login/home-page-after-login.component';
 import { ProductsAreaComponent } from './components/products-area/products-area.component';
 import { ProductCardComponent } from './components/product-card/product-card.component';
+import { OrderPageComponent } from './components/order-page/order-page.component';
+import { DialogAmountComponent } from './components/dialog-amount/dialog-amount.component';
+import { OrderConfirmComponent } from './components/order-confirm/order-confirm.component';
 
 
 @NgModule({
@@ -39,7 +44,10 @@ import { ProductCardComponent } from './components/product-card/product-card.com
     RegisterPageComponent,
     HomePageAfterLoginComponent,
     ProductsAreaComponent,
-    ProductCardComponent
+    ProductCardComponent,
+    OrderPageComponent,
+    DialogAmountComponent,
+    OrderConfirmComponent
   ],
   imports: [
     BrowserModule,
@@ -60,7 +68,9 @@ import { ProductCardComponent } from './components/product-card/product-card.com
     MatListModule,
     MatSnackBarModule,
     MatCardModule,
-    MatDialogModule
+    MatDialogModule,
+    MatDatepickerModule,
+    MatNativeDateModule,
   ],
   providers: [],
   bootstrap: [AppComponent]

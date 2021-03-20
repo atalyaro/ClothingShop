@@ -1,37 +1,48 @@
-<mat-grid-list cols="3" rowHeight="90vh">
-    <mat-grid-tile colspan="1">
+<mat-grid-list cols="3" rowHeight="100vh">
+    <mat-grid-tile class="part1" colspan="1">
         <div class="flex">
             <button routerLink="/homepageafterlogin" mat-flat-button [disabled]="!this._data.isloggedin"
                 color="primary">{{this._data.buttonstatus}}</button>
             <form [formGroup]="myForm" (ngSubmit)="handlesubmit()">
                 <mat-form-field appearance="outline">
-                    <mat-label>email</mat-label>
+                    <mat-label>Email</mat-label>
                     <input matInput placeholder="johnny789@gmail.com" formControlName="email">
                     <mat-icon matSuffix>alternate_email</mat-icon>
                     <mat-error *ngIf="myForm.controls.email.errors?.required">Email must be provided</mat-error>
+                    <mat-error *ngIf="myForm.controls.email.errors?.notexist">User isn't exist</mat-error>
                 </mat-form-field>
                 <mat-form-field appearance="outline">
-                    <mat-label>password</mat-label>
-                    <input matInput type="password" placeholder="****" formControlName="password">
+                    <mat-label>Password</mat-label>
                     <mat-icon matSuffix>vpn_key</mat-icon>
+                    <input matInput type="password" placeholder="****" formControlName="password">
                     <mat-error *ngIf="myForm.controls.password.errors?.required">Password must be provided</mat-error>
+                    <mat-error *ngIf="myForm.controls.password.errors?.wrong">Password is wrong</mat-error>
                 </mat-form-field>
-                <button mat-flat-button type="submit" color="primary" [disabled]="myForm.invalid">LOGIN</button>
+                <button mat-flat-button type="submit" color="primary" [disabled]="myForm.invalid">Login</button>
                 <p>Don't have an account yet? <a routerLink="/homepagebeforelogin/registerpage">Register</a></p>
             </form>
         </div>
     </mat-grid-tile>
-    <mat-grid-tile colspan="1">
+    <mat-grid-tile class="part2" colspan="1">
         <div class="flex">
-            <img width="100px" src="https://i.pinimg.com/564x/78/a9/90/78a9900f6dc08eb240058c3de4f00844.jpg" />
-            <p>blah blah this is my store</p>
+            <img height="230" src="../../../assets/logo2.png" />
+            <p class="aboutme">Hey everyone! <br>
+                My name is Atalya and I'm from Tel Aviv.<br>
+                It all started when I found out about the environmental damage
+                that the fashion industry caused over the last two centuries.
+                I've searched for a way to show people it's lucrative
+                and Eco-friendly to buy second hand clothes.
+                So, I created an online community for the purchase and
+                sale of second-hand clothing in Israel.
+            </p>
         </div>
     </mat-grid-tile>
-    <mat-grid-tile colspan="1">
+    <mat-grid-tile class="part3" colspan="1">
         <div class="flex">
+            <img src="https://static.thenounproject.com/png/174655-200.png" />
+            <p>{{productsamount}} different products are available in my store</p>
+            <p>{{ordersamount}} orders were already submitted in my store</p>
             <p>{{this._data.sentencestatus}}</p>
-            <p>There is {{productsamount}} products Available in our store</p>
-            <p>There is {{ordersamount}} orders submitted in out store</p>
         </div>
     </mat-grid-tile>
 </mat-grid-list>

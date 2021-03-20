@@ -1,0 +1,15 @@
+<div class="dialog">
+    <div mat-dialog-content class="header" disableClose="true">
+        <h1 class="title">
+            Your order was successfully accepted
+        </h1>
+        <p>
+            To downoald the receipt <a class="click" (click)="getrecipt()">click here</a>
+        </p>
+    </div>
+    <div mat-dialog-actions>
+        <button class="button" mat-button mat-dialog-close
+            (click)='_r.navigateByUrl("/homepagebeforelogin");this.dialogRef.close()'>
+            OK</button>
+    </div>
+</div>

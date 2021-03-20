@@ -1,90 +1,96 @@
-<a routerLink="/homepagebeforelogin/main">back to login page</a>
-<mat-horizontal-stepper linear #stepper>
-    <mat-step [stepControl]="firstFormGroup">
-        <form [formGroup]="firstFormGroup">
-            <ng-template matStepLabel>Sign-in details</ng-template>
-            <mat-form-field appearance="outline">
-                <mat-label>ID</mat-label>
-                <input matInput placeholder="id number" minlength="9" maxlength="9" type="number"
-                    formControlName="user_id" required>
-                <mat-error *ngIf="firstFormGroup.controls['user_id'].errors?.required">ID must be provided</mat-error>
-                <mat-error
-                    *ngIf="firstFormGroup.controls['user_id'].errors?.max || firstFormGroup.controls['user_id'].errors?.min">
-                    ID
-                    must be 9 digits</mat-error>
-                <mat-error *ngIf="firstFormGroup.controls['user_id'].errors?.invalidAsync">ID is already token
-                </mat-error>
-            </mat-form-field>
-            <mat-form-field appearance="outline">
-                <mat-label>Email</mat-label>
-                <input matInput type="text" placeholder="Email address" formControlName="email" required>
-                <mat-error *ngIf="firstFormGroup.controls.email.errors?.required">Email must be provided</mat-error>
-                <mat-error *ngIf="firstFormGroup.controls.email.errors?.email">Email is worng</mat-error>
-            </mat-form-field>
-            <mat-form-field appearance="outline">
-                <mat-label>Password</mat-label>
-                <input matInput type="password" placeholder="*****" formControlName="password" required>
-                <mat-error *ngIf="firstFormGroup.controls.password.errors?.required">Password must be provided
-                </mat-error>
-            </mat-form-field>
-            <mat-form-field appearance="outline">
-                <mat-label>Confirm Password</mat-label>
-                <input matInput type="password" placeholder="Confirm Password" formControlName="confirmPassword"
-                    required>
-                <mat-error *ngIf="firstFormGroup.controls.confirmPassword.errors?.required">Confirm Password must be
-                    provided
-                </mat-error>
-                <mat-error *ngIf="firstFormGroup.controls.confirmPassword.errors?.isequal">Password and Confrim Password
-                    must be same</mat-error>
-            </mat-form-field>
+<div class="body">
+    <mat-horizontal-stepper class="stepper" color="accent" linear #stepper>
+        <mat-step [stepControl]="firstFormGroup">
+            <form class="form" [formGroup]="firstFormGroup">
+                <ng-template matStepLabel>Sign-in Details</ng-template>
+                <mat-form-field color="accent" appearance="outline">
+                    <mat-label>User ID</mat-label>
+                    <input matInput placeholder="ID number" class="inputnum" minlength="9" maxlength="9" type="number"
+                        formControlName="user_id">
+                    <mat-error *ngIf="firstFormGroup.controls['user_id'].errors?.required">ID must be provided
+                    </mat-error>
+                    <mat-error
+                        *ngIf="firstFormGroup.controls['user_id'].errors?.max || firstFormGroup.controls['user_id'].errors?.min">
+                        ID must be 9 digits</mat-error>
+                    <mat-error *ngIf="firstFormGroup.controls['user_id'].errors?.invalidAsync">ID is already token
+                    </mat-error>
+                </mat-form-field>
+                <mat-form-field color="accent" appearance="outline">
+                    <mat-label>Email</mat-label>
+                    <input matInput type="text" placeholder="Email address" formControlName="email">
+                    <mat-error *ngIf="firstFormGroup.controls.email.errors?.required">Email must be provided</mat-error>
+                    <mat-error *ngIf="firstFormGroup.controls.email.errors?.email">Email is worng</mat-error>
+                </mat-form-field>
+                <mat-form-field color="accent" appearance="outline">
+                    <mat-label>Password</mat-label>
+                    <input matInput type="password" placeholder="*****" formControlName="password">
+                    <mat-error *ngIf="firstFormGroup.controls.password.errors?.required">Password must be provided
+                    </mat-error>
+                </mat-form-field>
+                <mat-form-field color="accent" appearance="outline">
+                    <mat-label>Confirm Password</mat-label>
+                    <input matInput type="password" placeholder="Confirm Password" formControlName="confirmPassword">
+                    <mat-error *ngIf="firstFormGroup.controls.confirmPassword.errors?.required">Confirm Password must be
+                        provided
+                    </mat-error>
+                    <mat-error *ngIf="firstFormGroup.controls.confirmPassword.errors?.isequal">Password and Confrim
+                        Password must be same</mat-error>
+                </mat-form-field>
+                <div class="actions">
+                    <button class="actions" mat-button routerLink="/homepagebeforelogin/main">Back to login page
+                    </button>
+                    <button class="actions" mat-button matStepperNext
+                        *ngIf="this.firstFormGroup.get('user_id').status !== 'PENDING'">Next</button>
+                    <mat-spinner class="spinner" color="accent" [diameter]="30"
+                        *ngIf="this.firstFormGroup.get('user_id').status === 'PENDING'">
+                    </mat-spinner>
+                </div>
+            </form>
+        </mat-step>
+        <mat-step [stepControl]="secondFormGroup">
+            <form class="form" [formGroup]="secondFormGroup">
+                <ng-template matStepLabel>Personal Details</ng-template>
+                <mat-form-field color="accent" appearance="outline">
+                    <mat-label>First Name</mat-label>
+                    <input matInput formControlName="first_name" placeholder="Bill">
+                    <mat-error *ngIf="secondFormGroup.controls['first_name'].errors?.required">First Name must be
+                        provided
+                    </mat-error>
+                </mat-form-field>
+                <mat-form-field color="accent" appearance="outline">
+                    <mat-label>Last Name</mat-label>
+                    <input matInput formControlName="last_name" placeholder="Gates">
+                    <mat-error *ngIf="secondFormGroup.controls['last_name'].errors?.required">Last Name must be
+                        provided
+                    </mat-error>
+                </mat-form-field>
+                <mat-form-field color="accent" appearance="outline">
+                    <mat-label>City</mat-label>
+                    <mat-select formControlName="city">
+                        <mat-option *ngFor="let city of this._data.cities" [value]="city">{{city}}</mat-option>
+                    </mat-select>
+                    <mat-error *ngIf="secondFormGroup.controls.city.errors?.required">City must be provided</mat-error>
+                </mat-form-field>
+                <mat-form-field color="accent" appearance="outline">
+                    <mat-label>Street</mat-label>
+                    <input matInput formControlName="street" placeholder="Rothschild 23">
+                    <mat-error *ngIf="secondFormGroup.controls.street.errors?.required">Street must be provided
+                    </mat-error>
+                </mat-form-field>
+                <div>
+                    <button class="actions" mat-button routerLink="/homepagebeforelogin/main">back to login page
+                    </button>
+                    <button class="actions" mat-button matStepperPrevious>Back</button>
+                    <button class="actions" mat-button matStepperNext (click)="register()">Next</button>
+                </div>
+            </form>
+        </mat-step>
+        <mat-step>
+            <ng-template matStepLabel>Done</ng-template>
+            <p style=" font-family: 'Merriweather', serif;">You are register succsufully.</p>
             <div>
-                <button mat-button matStepperNext
-                    *ngIf="this.firstFormGroup.get('user_id').status !== 'PENDING'">Next</button>
-                <mat-spinner [diameter]="30" *ngIf="this.firstFormGroup.get('user_id').status === 'PENDING'">
-                </mat-spinner>
+                <button mat-button class="actions" routerLink="/homepagebeforelogin/main">Go back to HomePage</button>
             </div>
-        </form>
-    </mat-step>
-    <mat-step [stepControl]="secondFormGroup">
-        <form [formGroup]="secondFormGroup">
-            <ng-template matStepLabel>Personal Details</ng-template>
-            <mat-form-field appearance="outline">
-                <mat-label>City</mat-label>
-                <mat-select formControlName="city" required>
-                    <mat-option *ngFor="let city of this._data.cities" [value]="city">{{city}}</mat-option>
-                </mat-select>
-                <mat-error *ngIf="secondFormGroup.controls.city.errors?.required">City must be provided</mat-error>
-            </mat-form-field>
-            <mat-form-field appearance="outline">
-                <mat-label>Street</mat-label>
-                <input matInput formControlName="street" placeholder="Rothschild 23" required>
-                <mat-error *ngIf="secondFormGroup.controls.street.errors?.required">Street must be provided</mat-error>
-            </mat-form-field>
-            <mat-form-field appearance="outline">
-                <mat-label>Private Name</mat-label>
-                <input matInput formControlName="private_name" placeholder="Bill" required>
-                <mat-error *ngIf="secondFormGroup.controls['private_name'].errors?.required">Privte Name must be
-                    provided
-                </mat-error>
-            </mat-form-field>
-            <mat-form-field appearance="outline">
-                <mat-label>Family Name</mat-label>
-                <input matInput formControlName="family_name" placeholder="Gates" required>
-                <mat-error *ngIf="secondFormGroup.controls['family_name'].errors?.required">Family Name must be provided
-                </mat-error>
-            </mat-form-field>
-            <div>
-                <button mat-button matStepperPrevious>Back</button>
-                <button mat-button matStepperNext (click)="register()">Next</button>
-            </div>
-        </form>
-    </mat-step>
-    <mat-step>
-        <ng-template matStepLabel>Done</ng-template>
-        <p>You are register succsufully.</p>
-        <div>
-            <button mat-button routerLink="/homepagebeforelogin/main">Go back to HomePage</button>
-            <!-- <button mat-button (click)="stepper.reset()">Reset</button> -->
-        </div>
-    </mat-step>
-</mat-horizontal-stepper>
+        </mat-step>
+    </mat-horizontal-stepper>
+</div>
