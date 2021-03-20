@@ -1,6 +1,6 @@
 const router = require("express").Router()
 const { Query } = require("../dbcon")
-const { onlyAdmin, everyUser } = require("../verification")
+const { everyUser } = require("../verification")
 
 router.get("/", everyUser, async (req, res) => {
     try {
