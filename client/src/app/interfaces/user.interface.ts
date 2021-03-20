@@ -1,7 +1,7 @@
 export default interface UserInterface {
     user_id: number
-    private_name: string
-    family_name: string
+    first_name: string
+    last_name: string
     email: string
     password: string
     access: number

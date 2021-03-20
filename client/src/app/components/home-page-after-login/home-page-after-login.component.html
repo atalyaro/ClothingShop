@@ -1,16 +1,21 @@
 <div class="example-container">
-    <mat-toolbar color="primary" class="example-toolbar">
+    <mat-toolbar color="accent" class="toolbar1">
         <mat-toolbar-row>
             <button mat-icon-button (click)="logout()">
                 <span class="material-icons">
                     logout
                 </span>
             </button>
-            <h3 class="example-app-name">Log Out</h3>
+            <h3 class="example-app-name" (click)="logout()">Log Out</h3>
             <span class="example-spacer"></span>
-            <!-- <form class="example-form"> -->
+            <span class="logo">
+                ATALYA
+                <img height="30px" src="https://webstockreview.net/images/clipart-clothes-icon-6.png">
+                CLOSET
+            </span>
             <mat-form-field class="search" appearance="standard" hideRequiredMarker="false">
-                <input matInput #search placeholder="Search product">
+                <input matInput #search placeholder="Search Products"
+                    (keydown.enter)='searchproducts(search.value);search.value=""'>
             </mat-form-field>
             <button mat-icon-button (click)='searchproducts(search.value);search.value=""'>
                 <span class="material-icons">
@@ -19,7 +24,7 @@
             </button>
         </mat-toolbar-row>
 
-        <mat-toolbar-row>
+        <mat-toolbar-row color="accent">
             <button mat-icon-button (click)="drawer.toggle()">
                 <span *ngIf="!this._data.loggedUser.access" class="material-icons">
                     shopping_cart
@@ -28,11 +33,12 @@
                     drive_file_rename_outline
                 </span>
             </button>
-            <h3 class="example-app-name" *ngIf="!this._data.loggedUser.access">Cart</h3>
-            <h3 class="example-app-name" *ngIf="this._data.loggedUser.access">Workspace</h3>
+            <h3 class="example-app-name" (click)="drawer.toggle()" *ngIf="!this._data.loggedUser.access">Cart</h3>
+            <h3 class="example-app-name" (click)="drawer.toggle()" *ngIf="this._data.loggedUser.access">Workspace</h3>
             <span class="example-spacer"></span>
             <mat-nav-list #categories>
-                <button class="item" mat-flat-button *ngFor=" let category of this._data.categories"
+                <button mat-flat-button style="background: rgb(226, 234, 235);
+                font-family: 'Merriweather', serif;" class="item" *ngFor=" let category of this._data.categories"
                     routerLink="/homepageafterlogin" [value]="category.category_name"
                     (click)="choosecategory($event)">{{category.category_name}}
                 </button>
@@ -47,24 +53,127 @@
 
         <mat-drawer #drawer mode="over">
             <div *ngIf="!this._data.loggedUser.access">
-                <div *ngFor="let productcart of this._data.productsofcart">
-                    <p>{{productcart.product_name}}X{{productcart.amount}}</p>
-                    <p>{{productcart.total_price}}$</p>
-                    <button mat-icon-button
-                        (click)="deleteoneproductcart(productcart.productincart_id,this._data.cart_id,productcart.total_price)"
-                        class="trash">
-                        <span class="material-icons">
-                            delete
-                        </span>
-                    </button>
+                <div class="cart" *ngFor="let productcart of this._data.productsofcart">
+                    <div class="card">
+                        <mat-card-content>
+                            <img [src]="this.productcart.image" class="imageprod" />
+                        </mat-card-content>
+                        <header class="headcard">
+                            <h4 class="title">
+                                {{productcart.product_name}} X {{productcart.amount}}
+                            </h4>
+                            <p>
+                                {{productcart.total_price}}$
+                            </p>
+                        </header>
+                        <mat-card-actions>
+                            <button mat-icon-button
+                                (click)="deleteoneproductcart(productcart.productincart_id,this._data.cart_id,productcart.total_price)"
+                                class="trash">
+                                <span class="material-icons">
+                                    delete
+                                </span>
+                            </button>
+                        </mat-card-actions>
+                    </div>
                 </div>
-                <p>total price: {{this._data.cartprice}}$</p>
-                <button mat-flat-button (click)="deleteallproducts(this._data.cart_id)">Clear Cart</button>
-                <button mat-flat-button>Checkout</button>
+                <div class="bottomcart">
+                    <p style="font-weight: bold;margin-top: 5px;">Total price: {{this._data.cartprice}}$</p>
+                    <div class="actionscart">
+                        <button mat-flat-button color="primary" class="button"
+                            (click)="deleteallproducts(this._data.cart_id)">Clear
+                            Cart</button>
+                        <button mat-flat-button color="primary" class="button" (click)="_r.navigateByUrl('orderpage')"
+                            [disabled]="!this._data.cartprice">Checkout</button>
+                    </div>
+                </div>
             </div>
-            <!-- <div *ngIf="!this._data.loggedUser.access">
-                <p>blah</p>
-            </div> -->
+            <div class="workspace" *ngIf="this._data.loggedUser.access">
+                <button mat-flat-button style="background:rgb(141, 182, 172)" class="buttonadd"
+                    (click)="this._data.showNewForm=!this._data.showNewForm;this._data.showEditForm=false">ADD
+                    NEW PRODUCT</button>
+                <form [ngStyle]="{'display':this._data.showNewForm? 'flex':'none'}" [formGroup]="newProductForm"
+                    (ngSubmit)="saveNewProduct()">
+                    <mat-form-field color="accent" appearance="outline">
+                        <mat-label>Product Name</mat-label>
+                        <input matInput placeholder="Black tshirt" formControlName="product_name">
+                        <mat-error *ngIf="newProductForm.controls.product_name.errors?.required">Product name must be
+                            provided
+                        </mat-error>
+                    </mat-form-field>
+                    <mat-form-field color="accent" appearance="outline">
+                        <mat-label>Product Price</mat-label>
+                        <!-- <mat-icon matSuffix>vpn_key</mat-icon> -->
+                        <input matInput type="number" class="inputnum" placeholder="11$"
+                            formControlName="product_price">
+                        <mat-error *ngIf="newProductForm.controls.product_price.errors?.required">Product price must be
+                            provided
+                        </mat-error>
+                    </mat-form-field>
+                    <mat-form-field color="accent" appearance="outline">
+                        <mat-label>Url Image</mat-label>
+                        <!-- <mat-icon matSuffix>vpn_key</mat-icon> -->
+                        <input matInput placeholder="http://www.coolshirt.png" formControlName="image">
+                        <mat-error *ngIf="newProductForm.controls.image.errors?.required">Image must be provided
+                        </mat-error>
+                    </mat-form-field>
+                    <mat-form-field color="accent" appearance="outline">
+                        <mat-label>Category</mat-label>
+                        <mat-select formControlName="category_id">
+                            <mat-option *ngFor="let category of this._data.categories" [value]="category.category_id">
+                                {{category.category_name}}
+                            </mat-option>
+                        </mat-select>
+                        <mat-error *ngIf="newProductForm.controls.category_id.errors?.required">Category must be
+                            provided
+                        </mat-error>
+                    </mat-form-field>
+                    <button mat-flat-button class="button" type="submit" color="primary"
+                        [disabled]="newProductForm.invalid">Add
+                        Product</button>
+                </form>
+                <form [ngStyle]="{'display':this._data.showEditForm? 'flex':'none'}"
+                    [formGroup]="this._data.editProductForm" (ngSubmit)="editproduct()">
+                    <mat-form-field color="accent" appearance="outline">
+                        <mat-label>Product Name</mat-label>
+                        <input matInput placeholder="Black tshirt" formControlName="product_name">
+                        <mat-error *ngIf="this._data.editProductForm.controls.product_name.errors?.required">Product
+                            name must be provided
+                        </mat-error>
+                    </mat-form-field>
+                    <mat-form-field color="accent" appearance="outline">
+                        <mat-label>Product Price</mat-label>
+                        <!-- <mat-icon matSuffix>vpn_key</mat-icon> -->
+                        <input matInput type="number" class="inputnum" placeholder="11$"
+                            formControlName="product_price">
+                        <mat-error *ngIf="this._data.editProductForm.controls.product_price.errors?.required">Product
+                            price must be provided
+                        </mat-error>
+                    </mat-form-field>
+                    <mat-form-field color="accent" appearance="outline">
+                        <mat-label>Url Image</mat-label>
+                        <!-- <mat-icon matSuffix>vpn_key</mat-icon> -->
+                        <input matInput placeholder="http://www.coolshirt.png" formControlName="image">
+                        <mat-error *ngIf="this._data.editProductForm.controls.image.errors?.required">Image must be
+                            provided
+                        </mat-error>
+                    </mat-form-field>
+                    <mat-form-field color="accent" appearance="outline">
+                        <mat-label>Category</mat-label>
+                        <mat-select formControlName="category_id">
+                            <mat-option *ngFor="let category of this._data.categories" [value]="category.category_id">
+                                {{category.category_name}}
+                            </mat-option>
+                        </mat-select>
+                        <mat-error *ngIf="this._data.editProductForm.controls.category_id.errors?.required">Category
+                            must be provided
+                        </mat-error>
+                    </mat-form-field>
+                    <button mat-flat-button class="button" type="submit" color="primary"
+                        [disabled]="this._data.editProductForm.invalid">Edit
+                        Product</button>
+                </form>
+            </div>
         </mat-drawer>
     </mat-drawer-container>
 </div>

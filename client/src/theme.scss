@@ -1,0 +1,110 @@
+
+@import '~@angular/material/theming';
+@import "~@angular/material/prebuilt-themes/indigo-pink.css";
+
+
+$mat-clothingshop-primary: (
+    50 : #f8fdfc,
+    100 : #eefbf8,
+    200 : #e3f8f3,
+    300 : #d7f5ee,
+    400 : #cff3eb,
+    500 : #c6f1e7,
+    600 : #c0efe4,
+    700 : #b9ede0,
+    800 : #b1ebdd,
+    900 : #a4e7d7,
+    A100 : #ffffff,
+    A200 : #ffffff,
+    A400 : #ffffff,
+    A700 : #ffffff,
+    contrast: (
+        50 : #000000,
+        100 : #000000,
+        200 : #000000,
+        300 : #000000,
+        400 : #000000,
+        500 : #000000,
+        600 : #000000,
+        700 : #000000,
+        800 : #000000,
+        900 : #000000,
+        A100 : #000000,
+        A200 : #000000,
+        A400 : #000000,
+        A700 : #000000,
+    )
+);
+
+$mat-clothingshop-accent:(
+    50 : #eef5f6,
+    100 : #d4e6e8,
+    200 : #b8d6d8,
+    300 : #9bc5c8,
+    400 : #85b8bd,
+    500 : #70acb1,
+    600 : #68a5aa,
+    700 : #5d9ba1,
+    800 : #539298,
+    900 : #418288,
+    A100 : #defcff,
+    A200 : #abf8ff,
+    A400 : #78f4ff,
+    A700 : #5ef2ff,
+    contrast: (
+        50 : #000000,
+        100 : #000000,
+        200 : #000000,
+        300 : #000000,
+        400 : #000000,
+        500 : #000000,
+        600 : #000000,
+        700 : #000000,
+        800 : #ffffff,
+        900 : #ffffff,
+        A100 : #000000,
+        A200 : #000000,
+        A400 : #000000,
+        A700 : #000000,
+    )
+);
+$mat-clothingshop-warn: (
+    50 : #f7e0e0,
+    100 : #eab3b3,
+    200 : #dc8080,
+    300 : #ce4d4d,
+    400 : #c42626,
+    500 : #b90000,
+    600 : #b20000,
+    700 : #aa0000,
+    800 : #a20000,
+    900 : #930000,
+    A100 : #ffbebe,
+    A200 : #ff8b8b,
+    A400 : #ff5858,
+    A700 : #ff3f3f,
+    contrast: (
+        50 : #000000,
+        100 : #000000,
+        200 : #000000,
+        300 : #ffffff,
+        400 : #ffffff,
+        500 : #ffffff,
+        600 : #ffffff,
+        700 : #ffffff,
+        800 : #ffffff,
+        900 : #ffffff,
+        A100 : #000000,
+        A200 : #000000,
+        A400 : #000000,
+        A700 : #ffffff,
+    )
+);
+
+$primary: mat-palette($mat-clothingshop-primary);
+$accent: mat-palette($mat-clothingshop-accent);
+$warn:mat-palette($mat-clothingshop-warn);
+
+$theme: mat-light-theme($primary,$accent,$warn);
+
+@include angular-material-theme($theme);

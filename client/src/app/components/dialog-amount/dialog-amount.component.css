@@ -1,0 +1,21 @@
+.dialog{
+    font-family: 'Merriweather', serif;
+    text-align: center;
+}
+
+.button{
+    margin:auto;
+    font-family: 'Merriweather', serif;
+    background:rgb(216,223,224);
+    margin-top: 1vh;
+}
+
+.input{
+    font-family: 'Merriweather', serif;
+}
+
+.input::-webkit-outer-spin-button,
+.input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}

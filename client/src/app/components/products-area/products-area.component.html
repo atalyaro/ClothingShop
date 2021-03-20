@@ -1,3 +1,12 @@
 <div class="products-area">
+    <div class="title" *ngIf="!this._data.products.length&&!this._data.notfoundsearch">
+        <h1 style="font-family: 'Merriweather', serif;">Welocome to my store!<br>
+            choose category to see all my clothes</h1>
+        <img height="150px" src="https://icon-library.com/images/clothes-icon/clothes-icon-17.jpg" />
+    </div>
+    <div class="title" *ngIf="!this._data.products.length&&this._data.notfoundsearch">
+        <h1 style=" font-family: 'Merriweather', serif;">No product found</h1>
+        <img height="150px" src="https://icon-library.com/images/clothes-icon/clothes-icon-17.jpg" />
+    </div>
     <app-product-card *ngFor="let product of this._data.products" [productitem]="product"></app-product-card>
 </div>

@@ -30,10 +30,10 @@ export class RegisterPageComponent implements OnInit {
       validator: [CheckingPasswordsValidator('password', 'confirmPassword')]
     })
     this.secondFormGroup = this._fb.group({
+      first_name: ["", [Validators.required]],
+      last_name: ["", [Validators.required]],
       city: ["", Validators.required],
-      street: ["", [Validators.required]],
-      private_name: ["", [Validators.required]],
-      family_name: ["", [Validators.required]]
+      street: ["", [Validators.required]]
     })
   }
 

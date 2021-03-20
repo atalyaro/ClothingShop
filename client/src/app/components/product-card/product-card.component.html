@@ -1,15 +1,16 @@
 <mat-card class="example-card">
     <mat-card-header>
-        <!-- <div mat-card-avatar class="example-header-image"></div> -->
-        <mat-card-title>{{productitem.product_name}}</mat-card-title>
-        <mat-card-subtitle>{{productitem.product_price}}$</mat-card-subtitle>
+        <div class="header">
+            <!-- <div mat-card-avatar class="example-header-image"></div> -->
+            <mat-card-title class="title">{{productitem.product_name}}</mat-card-title>
+            <mat-card-subtitle>{{productitem.product_price}}$</mat-card-subtitle>
+        </div>
     </mat-card-header>
     <img mat-card-image [src]="productitem.image" [alt]='"photo of "+productitem.product_name'>
-    <!-- <mat-card-content>
-      
-    </mat-card-content> -->
     <mat-card-actions>
-        <button *ngIf="!this._data.loggedUser.access" (click)="openDialog()" mat-button>ADD TO CART</button>
-        <button *ngIf="this._data.loggedUser.access" mat-button>EDIT PRODUCT</button>
+        <button class="button" *ngIf="!this._data.loggedUser.access" (click)="openDialog()" mat-button>Add to
+            cart</button>
+        <button class="button" *ngIf="this._data.loggedUser.access" mat-button (click)="openeditform()">Edit
+            product</button>
     </mat-card-actions>
 </mat-card>

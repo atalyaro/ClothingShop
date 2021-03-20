@@ -3,6 +3,9 @@
     flex-direction: column;
     justify-content: space-around;
     align-items: center;
+    text-align: center;
+    width:28vw;
+    font-family: 'Merriweather', serif;
   }
   form {
     display: flex;
@@ -10,15 +13,37 @@
     justify-content: center;
     align-items: center;
   }
+
+  
+  input:-webkit-autofill
+{
+    -webkit-box-shadow: 0 0 0 30px rgb(112,172,177) inset !important;
+    transition: 4000s; 
+}
   
   mat-form-field,
   button {
     margin-bottom: 7px;
+    font-family: 'Merriweather', serif;
   }
   
   p {
     margin-top: 5px;
   }
-  mat-grid-tile {
-      background: lightblue;
+  
+  .part2{
+    background: rgb(198,241,231);
+  }
+
+  .part1,.part3{
+    background: rgb(112,172,177);
+  }
+
+  .aboutme{
+    text-align: center;
+    font-family: 'Merriweather', serif;
+    font-size: 13px;
+    text-shadow: 1px 1px rgb(190, 203, 226);
+    color:rgb(89,96,109);
+    line-height: 1.6;
   }

@@ -1,8 +1,14 @@
 .products-area{
     display: flex;
-    /* justify-content: space-evenly; */
     flex-wrap: wrap;
-    width: 80vw;
-    margin: auto;
+    align-items: center;
+    margin-left: 9.5vw;
+    padding-top: 3vh;
+    padding-bottom: 3vh;
+    background: rgb(226, 234, 235);
    }
-  
+  .title{
+      margin:auto;
+      text-align: center;
+      margin-top: 20vh;
+  }

@@ -1,0 +1,100 @@
+<div class="example-container">
+    <mat-toolbar color="accent" class="example-toolbar">
+        <mat-toolbar-row>
+            <button mat-icon-button (click)="logout()">
+                <span class="material-icons">
+                    logout
+                </span>
+            </button>
+            <h3 class="logout" (click)="logout()">Log Out</h3>
+            <span class="logo">
+                ATALYA
+                <img height="30px" src="https://webstockreview.net/images/clipart-clothes-icon-6.png">
+                CLOSET
+            </span>
+        </mat-toolbar-row>
+        <mat-toolbar-row style="height: 10.7vh;">
+            <h3 class="titledetails">ORDER DETAILS</h3>
+            <h3 class="titleform">ORDER FORM</h3>
+        </mat-toolbar-row>
+    </mat-toolbar>
+
+    <mat-grid-list cols="2" rowHeight="78vh">
+        <mat-grid-tile class="part1" colspan="1">
+            <div class="flex">
+                <mat-form-field class="searchform" color="accent" appearance="standard" hideRequiredMarker="false">
+                    <input class="search" matInput #search placeholder="Search Product">
+                </mat-form-field>
+                <div class="productsorder">
+                    <div class="productinfo" *ngFor="let productcart of this._data.productsofcart">
+                        <p *ngIf="productcart.product_name.toLowerCase().indexOf(search.value)!=-1 &&
+                        search.value!=''">
+                            <mark>{{productcart.product_name}}</mark> X {{productcart.amount}} =
+                            {{productcart.total_price}}$
+                        </p>
+                        <p *ngIf="productcart.product_name.toLowerCase().indexOf(search.value)==-1 || search.value==''">
+                            {{productcart.product_name}} X {{productcart.amount}} = {{productcart.total_price}}$
+                        </p>
+                    </div>
+                </div>
+                <p class="totalprice">Total price: {{this._data.cartprice}}$</p>
+                <button mat-flat-button class="button" routerLink="/homepageafterlogin">Back to shop</button>
+            </div>
+        </mat-grid-tile>
+        <mat-grid-tile class="part2" colspan="1">
+            <form class="mat-accent" [formGroup]="myForm">
+                <mat-form-field class="inputorder" color="accent" appearance="outline" (dblclick)="changeInput()">
+                    <mat-label>City</mat-label>
+                    <mat-select panelClass="testClass" formControlName="city">
+                        <mat-option disabled>choose a city</mat-option>
+                        <mat-option *ngFor="let city of this._data.cities" [value]="city">{{city}}
+                        </mat-option>
+                    </mat-select>
+                    <mat-error *ngIf="myForm.controls.city.errors?.required">City must be provided</mat-error>
+                </mat-form-field>
+                <mat-form-field class="inputorder" color="accent" appearance="outline">
+                    <mat-label>Street</mat-label>
+                    <input matInput type="text" placeholder="Rothschild st." formControlName="street"
+                        (dblclick)="changeInput()">
+                    <mat-error *ngIf="myForm.controls.street.errors?.required">Street must be provided
+                    </mat-error>
+                </mat-form-field>
+                <mat-form-field class="inputorder" color="accent" appearance="outline">
+                    <mat-label>Shipping Date</mat-label>
+                    <input matInput [matDatepickerFilter]="myFilter" [min]="today" [matDatepicker]="picker"
+                        formControlName="date_of_order">
+                    <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+                    <mat-datepicker #picker></mat-datepicker>
+                    <mat-error *ngIf="myForm.controls.date_of_order.errors?.required">Shipping Date must be provided
+                    </mat-error>
+                </mat-form-field>
+                <mat-form-field class="inputorder" color="accent" appearance="outline">
+                    <mat-label>Credit Card</mat-label>
+                    <input matInput type="number" class="inputnum" placeholder="4580 2103 3459 2190"
+                        formControlName="creditCard">
+                    <mat-icon matSuffix>credit_card</mat-icon>
+                    <mat-error *ngIf="myForm.controls.creditCard.errors?.required">Credit Card must be provided
+                    </mat-error>
+                    <mat-error *ngIf="myForm.controls.creditCard.errors?.pattern">It's not a real credit card
+                    </mat-error>
+                </mat-form-field>
+                <mat-form-field class="inputorder" color="accent" appearance="outline">
+                    <mat-label>Four Digits</mat-label>
+                    <input matInput type="number" class="inputnum" placeholder="****"
+                        formControlName="four_digits_creditcard">
+                    <mat-error *ngIf="myForm.controls.four_digits_creditcard.errors?.required">Four Digits must be
+                        provided
+                    </mat-error>
+                    <mat-error *ngIf="myForm.controls.four_digits_creditcard.errors?.min">Four Digits mustbe be only
+                        four digits, not less
+                    </mat-error>
+                    <mat-error *ngIf="myForm.controls.four_digits_creditcard.errors?.max">Four Digits must be only four
+                        digits,not more
+                    </mat-error>
+                </mat-form-field>
+                <button mat-flat-button class="button" type="submit" color="accent" [disabled]="myForm.invalid"
+                    (click)="addorder();openDialog();">Order</button>
+            </form>
+        </mat-grid-tile>
+    </mat-grid-list>
+</div>

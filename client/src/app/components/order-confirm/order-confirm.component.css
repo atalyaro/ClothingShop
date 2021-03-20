@@ -1,0 +1,35 @@
+.click{
+    font-weight: bold;
+    text-decoration: underline;
+    color:darkblue;
+    
+}
+.click:hover{
+    cursor:pointer;
+}
+
+.dialog{
+    font-family: 'Merriweather', serif;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.header{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    font-family: 'Merriweather', serif;
+}
+
+.button{
+    font-family: 'Merriweather', serif;
+    background: rgb(216,223,224);
+}
+
+.title{
+    font-family: 'Merriweather', serif;
+    text-align: center;
+}

@@ -3,8 +3,10 @@ import { Routes, RouterModule } from '@angular/router';
 import { HomePageAfterLoginComponent } from './components/home-page-after-login/home-page-after-login.component';
 import { HomePageBeforeLoginComponent } from './components/home-page-before-login/home-page-before-login.component';
 import { MainComponent } from './components/main/main.component';
+import { OrderPageComponent } from './components/order-page/order-page.component';
 import { ProductsAreaComponent } from './components/products-area/products-area.component';
 import { RegisterPageComponent } from './components/register-page/register-page.component';
+import { LoggedGuard } from './guards/logged.guard';
 
 const routes: Routes = [
   {
@@ -16,14 +18,16 @@ const routes: Routes = [
     ]
   },
   {
-    path: "homepageafterlogin", component: HomePageAfterLoginComponent,
+    path: "homepageafterlogin", component: HomePageAfterLoginComponent, canActivate: [LoggedGuard],
     children: [
       { path: "productsarea", component: ProductsAreaComponent },
       { path: "**", redirectTo: "productsarea" },
     ]
   },
-  { path: "", pathMatch: "full", redirectTo: "homepagebeforelogin" },
-  // { path: "**", component: Page404Component }
+  {
+    path: "orderpage", component: OrderPageComponent, canActivate: [LoggedGuard]
+  },
+  { path: "", pathMatch: "full", redirectTo: "homepagebeforelogin" }
 ];
 
 @NgModule({

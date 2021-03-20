@@ -1,0 +1,94 @@
+mat-grid-tile {
+    font-family: 'Merriweather', serif;
+    background: rgb(216,223,224);
+}
+
+.search{
+  background: none;
+  font-family: 'Merriweather', serif;
+  font-size:15px;
+  -webkit-box-shadow: 0 0 0 30px rgb(216,223,224) inset !important;
+    transition: 4000s; 
+}
+
+.productsorder{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width:30vw; 
+    height: 35vh;
+    overflow: auto;
+  }
+  .flex{
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    align-items: center;
+    height: 70vh;
+  }
+
+  form {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+  }
+  
+  .inputorder{
+    width: 20vw;
+    font-family: 'Merriweather', serif;
+  }
+
+  mat-datepicker-toggle{
+    color:black;
+  }
+  .cdk-overlay-container .cdk-overlay-pane .testClass{
+    margin-top: 7%;
+  }
+
+  .logo{
+    margin-left: 32.2vw;
+    margin-top: 0.5vh;
+    font-family: 'Merriweather', serif;
+  font-weight: bold;
+  }
+
+  .titleform{
+    margin-top: 4vh;
+    margin-left: 38vw;
+    font-family: 'Merriweather', serif;
+  }
+
+  .totalprice{
+    font-weight: bold;
+    margin-top: 1vh;
+  }
+  .titledetails{
+    margin-top: 4vh;
+    font-family: 'Merriweather', serif;
+    margin-left: 17vw;
+  }
+
+  .button{
+    background: rgba(166, 171, 179, 0.705);
+    font-family: 'Merriweather', serif;
+  }
+
+.inputnum::-webkit-outer-spin-button,
+.inputnum::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+.logout{
+    margin-left: 6px;
+    font-family: 'Merriweather', serif;
+}
+
+  .logout:hover{
+cursor: pointer;
+  }
+
+  mat-option{
+    font-family: 'Merriweather', serif;
+  }

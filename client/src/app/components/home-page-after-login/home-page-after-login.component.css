@@ -6,9 +6,26 @@
  }
 
  .item{
-   margin-left:5px;
+   margin-left:3px;
  }
-  .example-container {
+
+ .toolbar1{
+  font-family: 'Merriweather', serif;
+ }
+
+ form,.workspace,.bottomcart{
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  font-family: 'Merriweather', serif;
+}
+
+.buttonadd{
+  margin-bottom: 5px;
+  font-family: 'Merriweather', serif;
+}
+.example-container {
     display: flex;
     flex-direction: column;
     position: absolute;
@@ -17,26 +34,33 @@
     left: 0;
     right: 0;
   }
-  .mat-drawer-content{
- width: 100vw;
-height:78vh;
-padding-bottom: 3px;
+
+.mat-drawer-content{
+  width: 100vw;
+  height:79vh;
+  padding-bottom: 3px;
+  background: rgb(226, 234, 235);
   }
-  /* .example-is-mobile .example-toolbar {
-    position: fixed;
-    z-index: 2;
-  } */
   
-  h3.example-app-name {
+  .example-app-name {
     margin-left: 6px;
+    font-family: 'Merriweather', serif;
+  }
+
+  .example-app-name:hover{
+cursor: pointer;
   }
 
   .mat-drawer{
-    padding: 12vw;
+    padding: 1vw;
+    width:30vw;
+    font-family: 'Merriweather', serif;
   }
-
-  .trash{
-    background-color: #424242;
+  mat-form-field{
+    font-family: 'Merriweather', serif;
+  }
+  mat-option{
+    font-family: 'Merriweather', serif;
   }
   .example-spacer {
     flex: 2 1;
@@ -44,4 +68,54 @@ padding-bottom: 3px;
 
   .search{
   background: none;
+  font-family: 'Merriweather', serif;
+  font-size:15px;
+  -webkit-box-shadow: 0 0 0 30px rgb(112,172,177) inset !important;
+    transition: 4000s; 
+}
+
+.imageprod{
+  height: 18vh;
+}
+
+.card{
+  display: flex;
+  flex-direction: row;
+  justify-content: space-evenly;
+  align-items: center;
+  height: 20vh;
+  font-family: 'Merriweather', serif;
+}
+
+.cart{
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.headcard{
+  width:10vw;
+}
+
+.title{
+  font-family: 'Merriweather', serif;
+}
+
+.button{
+  font-family: 'Merriweather', serif;
+  margin:0.5vw;
+}
+
+.logo{
+  margin-right: 22.65vw;
+  margin-top: 0.5vh;
+  font-family: 'Merriweather', serif;
+  
+  font-weight: bold;
+}
+
+.inputnum::-webkit-outer-spin-button,
+.inputnum::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
 }

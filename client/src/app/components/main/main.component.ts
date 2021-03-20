@@ -37,11 +37,18 @@ export class MainComponent implements OnInit {
   handlesubmit() {
     this._server.login(this.myForm.value).subscribe(
       (res: any) => {
-        localStorage.access_token = res.access_token
-        localStorage.refresh_token = res.refresh_token
-        this._data.isloggedin = true
-        this._data.loggedUser = res.user
-        this._server.checkinguserstatus()
+        if (!res.err) {
+          localStorage.access_token = res.access_token
+          localStorage.refresh_token = res.refresh_token
+          this._data.isloggedin = true
+          this._data.loggedUser = res.user
+          this._server.checkinguserstatus()
+        } else {
+          if (res.msg == "password is wrong")
+            this.myForm.controls['password'].setErrors({ wrong: true })
+          if (res.msg == "user isn't exist")
+            this.myForm.controls['email'].setErrors({ notexist: true })
+        }
       }, err => {
         console.log(err)
       }
