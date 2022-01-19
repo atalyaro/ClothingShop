@@ -39,7 +39,7 @@ He can add some new products or to edit the exist ones.
 The website is sensitive to back button, where an log out is made there is not possible to forward store page and so
 All The deisgn by me.
 
-Front: Angular and Metrial
+Front: Angular and Material
 
 Back: NodeJS Express
 
