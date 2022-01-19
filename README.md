@@ -1,27 +1,39 @@
 # Clothing Shop
-This website includs every little detail that a clothing shop needs. 
+This website includs every little detail that a clothing shop needs:
 from registering as a client to order delivery to your home. 
+
 There is Admin and clients accounts in the system.
 
-landing page: 
-devide to three parts: info part, me part and login
-the info part presents in real time all the orders that has been submitted and the amount of products that are still availlable in the website
-the me part expliend about me and my store (real story)
-and a login page or pass to register page.
-after log in the info page update with the last prusche or open cart info he have
+Landing page: 
+Devide to three parts: info part, me part and login
+
+The info part presents in real time all the orders that has been submitted and the amount of products that are still availlable in the website
+
+The me part expliend about me and my store (my real story)
+And a login page or pass to register page.
+
+After log in the info page update with the last prusche or open cart info he have
 
 Register page: 
 Built with a few stages, some of the features you can find is checking in real time if ID is already exist in the DataBase and comparing passwornd with confirm password.
 
 Store page:
 Devide to two parts: cart and store
+
 If the client already save a products from last visit its showing in the cart
+
 The cart shows all the products photo name amount and price
+
 For each produxt there is an option to delete prodcuts from the cart
+
 There is a total price (whos every change get update) and an oprion to clean the cart 
+
 The store is divided to catagories
+
 In each catogry there is a few products
+
 When a client choose to add a product to his cart he choose how many items he wantes and the adding in real time
+
 There is also a search from any products from all catagorys
 
 Order page:
